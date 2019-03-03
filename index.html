@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KEASE</title>
+</head>
+<body>
+    <input id="stock_symbol" value="MSFT"></input>
+    <input id="trend_keyword" value="Microsoft"></input>
+    <button onclick="getData(stock_symbol.value, trend_keyword.value)">Get Data</button>
+    <pre id="data_pre">
+
+    </pre>
+    <script>
+        function getData(stock, keyword) {
+            fetch(`/data?symbol=${stock}&keyword=${keyword}`)
+                .then(resp=>resp.json())
+                .then(json=>{
+                    document.getElementById("data_pre").innerText = JSON.stringify(json, null, "    ");
+                })
+        }
+    </script>
+</body>
+</html>
